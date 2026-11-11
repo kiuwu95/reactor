@@ -6,7 +6,7 @@
 #include<iostream>
 #include<memory>
 
-#include"ServerBuffer.h"
+#include"Buffer.h"
 class Channel;
 class EventLoop;
 
@@ -25,13 +25,6 @@ public:
     void DeleteConnection();
 
     Channel* channel() const;
-
-    static void* operator new(size_t size) {
-        return EventLoop::GetMemoryPool().allocate();
-    }
-    static void operator delete(void* p) noexcept {
-        return EventLoop::GetMemoryPool().deallocate(p);
-    }
 private:
     std::unique_ptr<Buffer>read_buff_;
     std::unique_ptr<Buffer>write_buff_;

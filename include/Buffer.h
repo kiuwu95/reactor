@@ -5,8 +5,6 @@
 #include<stdio.h>
 #include<arpa/inet.h>
 
-#include"EventLoop.h"
-
 class Buffer {
 public:
     Buffer(const size_t& init = 4096) :buf_(init) {}
@@ -22,13 +20,6 @@ public:
 
     ssize_t readn(int fd);
     ssize_t writen(int fd);
-
-    static void* operator new(size_t size) {
-        return EventLoop::GetMemoryPool().allocate();
-    }
-    static void operator delete(void* p) noexcept {
-        return EventLoop::GetMemoryPool().deallocate(p);
-    }
 private:
     std::vector<char> buf_;
     size_t reader_ = 0;

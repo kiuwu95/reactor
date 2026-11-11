@@ -16,7 +16,7 @@ const std::string Connection::RecvMsg() {
             memcpy(&MSGSIZE, read_buff_->peek(), 4);
             MSGSIZE = ntohl(MSGSIZE);
 
-            if (MSGSIZE == 0) {
+            if (MSGSIZE == 0 || MSGSIZE > 4096) {
                 read_buff_->hread(4);
                 return "";
             }

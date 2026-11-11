@@ -1,6 +1,6 @@
 ﻿#include"include/Client.h"
 #include"include/GetTime.h"
-#include"include/ClientBuffer.h"
+#include"include/Buffer.h"
 
 Client::Client() :cfd_(socket(AF_INET, SOCK_STREAM, 0)),
 read_buff_(std::make_unique<Buffer>()),

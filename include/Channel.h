@@ -23,13 +23,6 @@ public:
 
     void SetReadCallBack(std::function<void()> f);
     void SetWriteCallBack(std::function<void()> f);
-
-    static void* operator new(size_t size) {
-        return EventLoop::GetMemoryPool().allocate();
-    }
-    static void operator delete(void* p) noexcept {
-        return EventLoop::GetMemoryPool().deallocate(p);
-    }
 private:
     int fd_;
     EventLoop* loop_;
