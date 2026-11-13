@@ -43,7 +43,7 @@ void EventLoop::RunInLoop(std::function<void()> f) {
         f();
     }
     else {
-        tasks_.emplace_back(std::move(f));
+        AddTask(f);
     }
 }
 
